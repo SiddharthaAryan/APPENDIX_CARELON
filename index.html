@@ -1,0 +1,252 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Appendix · Calculations & Assumptions · Decide at the Door</title>
+<style>
+:root{--p:#540EB5;--i:#4931AF;--t:#0FB5AE;--tt:#C5F0EE;--sky:#E4EDFB;--lav:#F6F2FD;--line:#DDD4F2;--ink:#1B1340;--mu:#5B5478;--gold:#FFF0A3;--goldB:#F1DFA6}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:Inter,'Segoe UI',system-ui,sans-serif;background:var(--sky);color:var(--ink);line-height:1.5}
+header{background:linear-gradient(100deg,#3D0A8A,var(--p) 45%,var(--i));color:#fff;padding:28px 16px}
+.wrap{max-width:1180px;margin:0 auto;padding:0 16px}
+header h1{font-size:34px;font-weight:900;letter-spacing:-.5px}
+header p{opacity:.9;margin-top:6px;font-weight:500}
+header .who{margin-top:10px;font-size:14px;font-weight:700;color:#F7D774}
+nav{position:sticky;top:0;background:#fff;border-bottom:1px solid var(--line);z-index:5}
+nav .wrap{display:flex;gap:6px;flex-wrap:wrap;padding:10px 16px}
+nav a{font-size:13px;font-weight:800;color:var(--p);text-decoration:none;background:var(--lav);padding:6px 10px;border-radius:8px}
+section{background:#fff;border:1px solid var(--line);border-radius:16px;margin:22px 0;overflow:hidden;box-shadow:0 6px 18px rgba(60,14,140,.07)}
+section h2{background:linear-gradient(90deg,var(--p),var(--i));color:#fff;font-size:19px;font-weight:900;padding:12px 18px;letter-spacing:.3px}
+.in{padding:16px 18px}
+.in p{margin:6px 0 10px;color:#3B3360}
+table{width:100%;border-collapse:collapse;font-size:14px;margin:8px 0 14px}
+th{background:var(--lav);text-align:left;padding:8px 10px;font-size:12px;letter-spacing:.6px;text-transform:uppercase;color:var(--i);border-bottom:2px solid var(--line)}
+td{padding:8px 10px;border-bottom:1px solid #EEE8F8;vertical-align:top}
+td.f{font-family:'JetBrains Mono',Consolas,monospace;font-size:13px;color:#2A2050}
+td.r{font-weight:900;color:var(--p);white-space:nowrap}
+.tag{display:inline-block;font-size:11px;font-weight:900;letter-spacing:.6px;padding:2px 7px;border-radius:999px;white-space:nowrap}
+.F{background:#D8F6F3;color:#06756F}.D{background:#E3EEFF;color:#1F55B8}.A{background:#FFF1DA;color:#9A5B00}.P{background:#EFE9F9;color:var(--p)}
+.note{background:#FFFBEF;border:1px solid var(--goldB);border-radius:10px;padding:10px 12px;font-size:13.5px;margin:8px 0}
+.key{display:flex;gap:10px;flex-wrap:wrap;font-size:13px;margin-top:6px}
+h3{font-size:15px;color:var(--p);margin:14px 0 4px}
+footer{text-align:center;color:var(--mu);font-size:13px;padding:24px 16px 40px}
+@media(max-width:700px){table{font-size:12.5px}td.f{font-size:11.5px}header h1{font-size:26px}}
+</style></head><body>
+<header><div class="wrap">
+<h1>Appendix · Calculations, Derivations & Assumptions</h1>
+<p>Every calculated number on the slides, with its working, source table and assumption, so each figure can be traced back to the case.</p>
+<div class="who">Siddhartha Aryan · MBAHC25080 · IIM Jammu · Carelon Global Solutions · Prior Authorization case</div>
+<div class="key"><span class="tag F">FACT</span> stated in the case <span class="tag D">DERIVED</span> calculated from case data <span class="tag A">ASSUMPTION</span> our stated input <span class="tag P">PROPOSED</span> target or plan</div>
+</div></header>
+<nav><div class="wrap">
+<a href="#a0">Base inputs</a><a href="#a1">A1 Turnaround</a><a href="#a2">A2 Denials</a><a href="#a3">A3 Hypotheses</a><a href="#b">B Solution & MVP</a><a href="#c">C AI pilot</a><a href="#d1">D1 Business case</a><a href="#d2">D2 Metrics</a><a href="#d3">D3 Rollout</a><a href="#e">E AI disclosure</a><a href="#ex">Exec summary</a><a href="#as">Assumptions log</a>
+</div></nav>
+<main class="wrap">
+
+<section id="a0"><h2>0 · Base inputs taken directly from the case</h2><div class="in">
+<table><tr><th>Input</th><th>Value</th><th>Source</th><th>Type</th></tr>
+<tr><td>Requests per month, January → September</td><td class="r">88,000 → 97,000</td><td>Table 1</td><td><span class="tag F">FACT</span></td></tr>
+<tr><td>Standard decisions within 7 days</td><td class="r">90% → 80%</td><td>Table 1 / page 1</td><td><span class="tag F">FACT</span></td></tr>
+<tr><td>Average days to decision</td><td class="r">4.1 → 5.9</td><td>Table 1</td><td><span class="tag F">FACT</span></td></tr>
+<tr><td>Denial rate vs similar insurers</td><td class="r">17% vs ~11%</td><td>Page 1 / Table 1</td><td><span class="tag F">FACT</span></td></tr>
+<tr><td>Appealed denials overturned</td><td class="r">62%</td><td>Page 1 / Table 1</td><td><span class="tag F">FACT</span></td></tr>
+<tr><td>Requests by channel (Sep): fax / portal / phone / API</td><td class="r">44,000 / 31,000 / 14,000 / 8,000</td><td>Table 2</td><td><span class="tag F">FACT</span></td></tr>
+<tr><td>Pended for missing information: fax / portal / phone / API</td><td class="r">41% / 18% / 22% / 6%</td><td>Table 2</td><td><span class="tag F">FACT</span></td></tr>
+<tr><td>Average days to decision: fax / portal / phone / API</td><td class="r">6.8 / 3.9 / 5.1 / 1.6</td><td>Table 2</td><td><span class="tag F">FACT</span></td></tr>
+<tr><td>Nurse reviewers · productive hours per nurse per month</td><td class="r">300 · 150 h</td><td>Table 5</td><td><span class="tag F">FACT</span></td></tr>
+<tr><td>Nurse minutes: complete vs incomplete request</td><td class="r">18 vs 52 min</td><td>Table 5</td><td><span class="tag F">FACT</span></td></tr>
+<tr><td>Average provider response time for missing documents</td><td class="r">3.2 days</td><td>Table 5</td><td><span class="tag F">FACT</span></td></tr>
+<tr><td>Fully loaded nurse cost · hire-and-train time</td><td class="r">$95,000/yr · 12 weeks</td><td>Table 5 / assumptions</td><td><span class="tag F">FACT</span></td></tr>
+<tr><td>Cost per appeal</td><td class="r">$180</td><td>Table 5</td><td><span class="tag F">FACT</span></td></tr>
+<tr><td>Denials per month (approx.) and reason shares</td><td class="r">≈16,500 · 46/28/11/9/6%</td><td>Table 4</td><td><span class="tag F">FACT</span></td></tr>
+<tr><td>Groups with &gt;97% approval · share of volume</td><td class="r">30 groups · 21%</td><td>Table 6</td><td><span class="tag F">FACT</span></td></tr>
+<tr><td>Top 50 groups' share · two at-risk groups' share</td><td class="r">58% · 12%</td><td>Table 6 / page 1</td><td><span class="tag F">FACT</span></td></tr>
+<tr><td>Two at-risk groups: members · annual payments</td><td class="r">140,000 · $410M</td><td>Page 1</td><td><span class="tag F">FACT</span></td></tr>
+<tr><td>AI pilot: requests · approve / unsure / likely-deny · nurse agreement</td><td class="r">9,000 · 64/25/11% · 98.6%</td><td>Table 7</td><td><span class="tag F">FACT</span></td></tr>
+<tr><td>Nurses approved AI "likely deny" cases · Medicaid gap · notes effect</td><td class="r">41% · 7 pp · 2.3×</td><td>Table 7</td><td><span class="tag F">FACT</span></td></tr>
+<tr><td>Vendor tool cost · supported electronic switching · gold-card audit</td><td class="r">$200–500K/yr · 4–8 weeks · 5%</td><td>Case assumptions</td><td><span class="tag F">FACT</span></td></tr>
+<tr><td>Volume growth allowed for planning</td><td class="r">≈1% per month</td><td>Case assumptions</td><td><span class="tag F">FACT</span></td></tr>
+</table>
+</div></section>
+
+<section id="a1"><h2>A1 · Why turnaround slipped while volume grew ~10%</h2><div class="in">
+<table><tr><th>Number on slide</th><th>Working</th><th>Result</th><th>Type</th></tr>
+<tr><td>Volume growth</td><td class="f">(97,000 − 88,000) ÷ 88,000</td><td class="r">+10.2%</td><td><span class="tag D">DERIVED</span></td></tr>
+<tr><td>Decision-time growth</td><td class="f">(5.9 − 4.1) ÷ 4.1</td><td class="r">+43.9%</td><td><span class="tag D">DERIVED</span></td></tr>
+<tr><td>Delay grew faster than volume</td><td class="f">43.9% ÷ 10.2%</td><td class="r">4.3×</td><td><span class="tag D">DERIVED</span></td></tr>
+<tr><td>Available nurse hours</td><td class="f">300 × 150</td><td class="r">45,000 h</td><td><span class="tag D">DERIVED</span></td></tr>
+<tr><td>Incomplete (pended) requests</td><td class="f">44,000×41% + 31,000×18% + 14,000×22% + 8,000×6%<br>= 18,040 + 5,580 + 3,080 + 480</td><td class="r">27,180</td><td><span class="tag D">DERIVED</span></td></tr>
+<tr><td>Complete requests</td><td class="f">97,000 − 27,180</td><td class="r">69,820</td><td><span class="tag D">DERIVED</span></td></tr>
+<tr><td>Hours on complete requests</td><td class="f">69,820 × 18 ÷ 60</td><td class="r">20,946 h</td><td><span class="tag D">DERIVED</span></td></tr>
+<tr><td>Hours on incomplete requests</td><td class="f">27,180 × 52 ÷ 60</td><td class="r">23,556 h</td><td><span class="tag D">DERIVED</span></td></tr>
+<tr><td>Required nurse hours</td><td class="f">20,946 + 23,556</td><td class="r">44,502 h</td><td><span class="tag D">DERIVED</span></td></tr>
+<tr><td>Headroom · spare share</td><td class="f">45,000 − 44,502 = 498 · 498 ÷ 45,000</td><td class="r">498 h · 1.1%</td><td><span class="tag D">DERIVED</span></td></tr>
+<tr><td>Estimated utilisation</td><td class="f">44,502 ÷ 45,000</td><td class="r">98.9%</td><td><span class="tag D">DERIVED</span></td></tr>
+<tr><td>Share of requests incomplete</td><td class="f">27,180 ÷ 97,000</td><td class="r">28.0%</td><td><span class="tag D">DERIVED</span></td></tr>
+<tr><td>Share of nurse time on incomplete</td><td class="f">23,556 ÷ 44,502</td><td class="r">52.9% ≈ 53%</td><td><span class="tag D">DERIVED</span></td></tr>
+<tr><td>Base review inside incomplete requests</td><td class="f">27,180 × 18 ÷ 60</td><td class="r">8,154 h</td><td><span class="tag D">DERIVED</span></td></tr>
+<tr><td>Additional handling hours</td><td class="f">27,180 × (52 − 18) ÷ 60</td><td class="r">15,402 h</td><td><span class="tag D">DERIVED</span></td></tr>
+<tr><td>Bar shares of 45,000 h</td><td class="f">20,946/45,000 · 8,154/45,000 · 15,402/45,000 · 498/45,000</td><td class="r">46.5 · 18.1 · 34.2 · 1.1%</td><td><span class="tag D">DERIVED</span></td></tr>
+<tr><td>Fax share of incomplete requests</td><td class="f">18,040 ÷ 27,180 · other channels 27,180 − 18,040</td><td class="r">66% · 9,140 (34%)</td><td><span class="tag D">DERIVED</span></td></tr>
+<tr><td>Workload if every request were complete</td><td class="f">97,000 × 18 ÷ 60 = 29,100 h · 29,100 ÷ 45,000</td><td class="r">≈65% utilisation</td><td><span class="tag D">DERIVED</span></td></tr>
+</table>
+<div class="note"><b>Assumptions:</b> each pended request is counted once at 52 minutes (the 52 minutes already includes the follow-up work); channel pend rates are applied to September volume; the workload is a September estimate, so it explains current pressure but not the full January–September history, for which completeness data is not given.</div>
+</div></section>
+
+<section id="a2"><h2>A2 · Denials and appeals</h2><div class="in">
+<table><tr><th>Number on slide</th><th>Working</th><th>Result</th><th>Type</th></tr>
+<tr><td>Missing documentation denials</td><td class="f">16,500 × 46%</td><td class="r">7,590</td><td><span class="tag D">DERIVED</span></td></tr>
+<tr><td>Clinical-guideline denials</td><td class="f">16,500 × 28%</td><td class="r">4,620</td><td><span class="tag D">DERIVED</span></td></tr>
+<tr><td>Coverage + network + duplicate</td><td class="f">16,500 × (11% + 9% + 6%) = 1,815 + 1,485 + 990</td><td class="r">4,290 (26%)</td><td><span class="tag D">DERIVED</span></td></tr>
+<tr><td>Gap to 11% benchmark</td><td class="f">97,000 × (17% − 11%)</td><td class="r">5,820 / month</td><td><span class="tag D">DERIVED</span></td></tr>
+<tr><td>Documentation denials vs benchmark gap</td><td class="f">7,590 &gt; 5,820</td><td class="r">exceeds gap</td><td><span class="tag D">DERIVED</span></td></tr>
+<tr><td>Service denials (requests × denial rate, Table 3)</td><td class="f">Drugs 16,000×24% = 3,840 · Imaging 28,000×10% = 2,800 · PT 18,000×14% = 2,520 · Equipment 8,000×31% = 2,480 · Outpatient surgery 12,000×19% = 2,280 · Home health 6,000×27% = 1,620 · Inpatient surgery 9,000×14% = 1,260</td><td class="r">Σ ≈ 16,800</td><td><span class="tag D">DERIVED</span></td></tr>
+<tr><td>Fax incomplete requests · rate</td><td class="f">44,000 × 41%</td><td class="r">18,040 · 41%</td><td><span class="tag D">DERIVED</span></td></tr>
+</table>
+<div class="note"><b>Notes:</b> the service total (≈16,800) exceeds the case's "about 16,500" because inputs are rounded. Overturn rates apply only to appealed denials; the case gives no appeal volume, denials by channel, or link between denial reason and appeal outcome. The gap to the benchmark is a sizing figure, not proven avoidable volume.</div>
+</div></section>
+
+<section id="a3"><h2>A3 · Hypothesis verdicts: numbers used</h2><div class="in">
+<table><tr><th>Hypothesis · number</th><th>Working</th><th>Result</th><th>Type</th></tr>
+<tr><td>H1 · volume growth vs utilisation</td><td class="f">See A1: +10.2% · 98.9%</td><td class="r">Refine</td><td><span class="tag D">DERIVED</span></td></tr>
+<tr><td>H2 · documentation vs guideline denials</td><td class="f">46% vs 28% (Table 4)</td><td class="r">Reject as stated</td><td><span class="tag F">FACT</span></td></tr>
+<tr><td>H3 · fax share of incomplete</td><td class="f">(44,000 × 41%) ÷ 27,180</td><td class="r">66%</td><td><span class="tag D">DERIVED</span></td></tr>
+<tr><td>H4 · AI "likely deny" approved by nurses</td><td class="f">Table 7</td><td class="r">41%</td><td><span class="tag F">FACT</span></td></tr>
+<tr><td>H5 · gold-card requests</td><td class="f">97,000 × 21%</td><td class="r">20,370</td><td><span class="tag D">DERIVED</span></td></tr>
+<tr><td>H5 · capacity released</td><td class="f">20,370 × 95% × 18 ÷ 60 = 5,805.45</td><td class="r">≈5,805 h</td><td><span class="tag D">DERIVED</span></td></tr>
+<tr><td>H5 · nurse-capacity equivalent</td><td class="f">5,805 ÷ 150 = 38.7</td><td class="r">≈39 nurses</td><td><span class="tag D">DERIVED</span></td></tr>
+<tr><td>H6 · hours added by 40 nurses</td><td class="f">40 × 150</td><td class="r">6,000 h</td><td><span class="tag D">DERIVED</span></td></tr>
+<tr><td>H7 · Medicaid recommendation gap</td><td class="f">Table 7</td><td class="r">7 pp</td><td><span class="tag F">FACT</span></td></tr>
+<tr><td>H8 · extra minutes per incomplete request</td><td class="f">52 − 18</td><td class="r">34 min</td><td><span class="tag D">DERIVED</span></td></tr>
+</table>
+<div class="note"><b>Assumption (H5):</b> the 5% of gold-card requests that are audited still take a full 18-minute review; gold-card requests are assumed complete, so no pend savings are counted for them. Released capacity is not jobs removed or cash saved.</div>
+</div></section>
+
+<section id="b"><h2>B · Users, solution, gold cards, MVP and prioritisation</h2><div class="in">
+<h3>B1 · Users and pain points</h3>
+<table><tr><th>Number</th><th>Working</th><th>Result</th><th>Type</th></tr>
+<tr><td>Fax requests pended · other</td><td class="f">41% · 100% − 41%</td><td class="r">41% · 59%</td><td><span class="tag F">FACT</span></td></tr>
+<tr><td>Denials citing missing documentation · other</td><td class="f">46% · 100% − 46%</td><td class="r">46% · 54%</td><td><span class="tag F">FACT</span></td></tr>
+<tr><td>Standard requests missing 7 days</td><td class="f">100% − 80%</td><td class="r">20%</td><td><span class="tag D">DERIVED</span></td></tr>
+<tr><td>Incomplete hours</td><td class="f">27,180 × 52 ÷ 60</td><td class="r">23,556 h</td><td><span class="tag D">DERIVED</span></td></tr>
+</table>
+<h3>B2 · Gold-card full-rollout estimate (Table 6)</h3>
+<table><tr><th>Metric</th><th>Working</th><th>Result</th><th>Type</th></tr>
+<tr><td>Candidate requests</td><td class="f">97,000 × 21%</td><td class="r">20,370 / month</td><td><span class="tag D">DERIVED</span></td></tr>
+<tr><td>Random audits</td><td class="f">20,370 × 5% = 1,018.5</td><td class="r">≈1,019 / month</td><td><span class="tag D">DERIVED</span></td></tr>
+<tr><td>Routine reviews avoided</td><td class="f">20,370 × 95% = 19,351.5</td><td class="r">≈19,352 / month</td><td><span class="tag D">DERIVED</span></td></tr>
+<tr><td>Nurse capacity released · equivalent</td><td class="f">19,352 × 18 ÷ 60 · ÷ 150</td><td class="r">≈5,805 h · ≈39 nurses</td><td><span class="tag D">DERIVED</span></td></tr>
+<tr><td>Imaging denials (why not whole-service exemption)</td><td class="f">28,000 × 10%</td><td class="r">2,800 / month</td><td><span class="tag D">DERIVED</span></td></tr>
+<tr><td>Two at-risk groups' requests</td><td class="f">97,000 × 12%</td><td class="r">11,640 / month</td><td><span class="tag D">DERIVED</span></td></tr>
+</table>
+<h3>B2 · Separate impact scenarios (do not add)</h3>
+<table><tr><th>Scenario</th><th>Working</th><th>Result</th><th>Type</th></tr>
+<tr><td>Halve missing-information requests</td><td class="f">27,180 × 50% × (52 − 18) ÷ 60 = 7,701</td><td class="r">7,701 h / month</td><td><span class="tag A">ASSUMPTION</span></td></tr>
+<tr><td>Utilisation after halving pends</td><td class="f">(44,502 − 7,701) ÷ 45,000</td><td class="r">98.9% → 81.8%</td><td><span class="tag D">DERIVED</span></td></tr>
+<tr><td>Halve fax missing-information requests only</td><td class="f">18,040 × 50% × 34 ÷ 60 = 5,111.3</td><td class="r">≈5,111 h / month</td><td><span class="tag A">ASSUMPTION</span></td></tr>
+<tr><td>Full eligible gold-card rollout</td><td class="f">97,000 × 21% × 95% × 18 ÷ 60</td><td class="r">≈5,805 h / month</td><td><span class="tag A">ASSUMPTION</span></td></tr>
+</table>
+<div class="note">"Halving" is a scenario, not a forecast. The document checker's 90% accuracy (case) is <b>not</b> a 90% reduction in missing documents, because providers still have to supply them.</div>
+<h3>B2 · Prioritisation score = Impact × Confidence ÷ Effort</h3>
+<table><tr><th>Capability</th><th>Impact</th><th>Confidence</th><th>Effort</th><th>Working</th><th>Score</th></tr>
+<tr><td>Phased gold carding</td><td>3</td><td>90%</td><td>2</td><td class="f">3 × 0.9 ÷ 2</td><td class="r">1.35</td></tr>
+<tr><td>Checklist + Evidence Passport</td><td>3</td><td>80%</td><td>3</td><td class="f">3 × 0.8 ÷ 3</td><td class="r">0.80</td></tr>
+<tr><td>Administrative checks</td><td>2</td><td>90%</td><td>3</td><td class="f">2 × 0.9 ÷ 3</td><td class="r">0.60</td></tr>
+<tr><td>Two-provider API onboarding</td><td>3</td><td>80%</td><td>5</td><td class="f">3 × 0.8 ÷ 5</td><td class="r">0.48</td></tr>
+<tr><td>AI approval route</td><td>3</td><td>50%</td><td>5</td><td class="f">3 × 0.5 ÷ 5</td><td class="r">0.30</td></tr>
+</table>
+<div class="note"><span class="tag A">ASSUMPTION</span> Impact and effort are team judgments on 1–5 scales; confidence reflects how directly case data supports each item (AI is lower until the fairness gap is resolved). Foundations (shared record, original clock) come first regardless of score.</div>
+</div></section>
+
+<section id="c"><h2>C · AI pilot evaluation (Table 7)</h2><div class="in">
+<table><tr><th>Number on slide</th><th>Working</th><th>Result</th><th>Type</th></tr>
+<tr><td>Approval recommendations</td><td class="f">9,000 × 64%</td><td class="r">5,760</td><td><span class="tag D">DERIVED</span></td></tr>
+<tr><td>Nurse disagreements with approvals</td><td class="f">5,760 × (100% − 98.6%) = 80.6</td><td class="r">≈81</td><td><span class="tag D">DERIVED</span></td></tr>
+<tr><td>"Likely deny" cases approved by nurses</td><td class="f">9,000 × 11% × 41% = 405.9</td><td class="r">≈406</td><td><span class="tag D">DERIVED</span></td></tr>
+<tr><td>Conditional candidate pool</td><td class="f">(28,000 imaging + 18,000 PT) × 64% ÷ 97,000 = 29,440 ÷ 97,000</td><td class="r">30.4%</td><td><span class="tag A">ASSUMPTION</span></td></tr>
+</table>
+<div class="note">The candidate pool assumes the pilot's 64% rate transfers to all imaging and PT volume; it is <b>not</b> a safe automation rate. The pilot covered imaging and PT only (9,000 requests over six weeks), and agreement does not establish clinical safety. Excluding ZIP code and the launch gates are proposals; the cause of the 7-point gap is not established.</div>
+</div></section>
+
+<section id="d1"><h2>D1 · Business case: plan vs hiring 40 nurses</h2><div class="in">
+<table><tr><th>Number on slide</th><th>Working</th><th>Result</th><th>Type</th></tr>
+<tr><td>Cost of hiring 40 nurses</td><td class="f">40 × $95,000</td><td class="r">$3.8M / year</td><td><span class="tag D">DERIVED</span></td></tr>
+<tr><td>Build / operations team</td><td class="f">10–12 FTE × $45,000 (fully loaded GCC cost)</td><td class="r">$450–540K</td><td><span class="tag A">ASSUMPTION</span></td></tr>
+<tr><td>Two vendor tools (document checking, fax extraction)</td><td class="f">2 × $200–500K</td><td class="r">$400K–1M</td><td><span class="tag A">ASSUMPTION</span></td></tr>
+<tr><td>Provider onboarding allowance</td><td class="f">stated allowance</td><td class="r">$200K</td><td><span class="tag A">ASSUMPTION</span></td></tr>
+<tr><td>Year-one budget</td><td class="f">450K + 400K + 200K = 1.05M · 540K + 1M + 200K = 1.74M</td><td class="r">$1.05–1.74M ≈ $1.0–1.8M</td><td><span class="tag D">DERIVED</span></td></tr>
+<tr><td>Growth factor, 6 months at 1%</td><td class="f">1.01⁶</td><td class="r">1.0615</td><td><span class="tag D">DERIVED</span></td></tr>
+<tr><td>Month-6 requests</td><td class="f">97,000 × 1.0615</td><td class="r">≈102,968</td><td><span class="tag D">DERIVED</span></td></tr>
+<tr><td>Unchanged workload, month 6</td><td class="f">44,502 × 1.0615</td><td class="r">≈47,240 h</td><td><span class="tag D">DERIVED</span></td></tr>
+<tr><td>Do nothing: utilisation</td><td class="f">47,240 ÷ 45,000</td><td class="r">105.0%</td><td><span class="tag D">DERIVED</span></td></tr>
+<tr><td>Capacity with 40 more nurses</td><td class="f">(300 + 40) × 150</td><td class="r">51,000 h</td><td><span class="tag D">DERIVED</span></td></tr>
+<tr><td>Hire 40: utilisation</td><td class="f">47,240 ÷ 51,000</td><td class="r">92.6%</td><td><span class="tag D">DERIVED</span></td></tr>
+<tr><td>Plan (conditional) workload</td><td class="f">(44,502 − 5,805.45 − 7,701) × 1.0615 = 30,995.55 × 1.0615</td><td class="r">≈32,902 h</td><td><span class="tag D">DERIVED</span></td></tr>
+<tr><td>Plan (conditional) utilisation</td><td class="f">32,902 ÷ 45,000</td><td class="r">73.1%</td><td><span class="tag D">DERIVED</span></td></tr>
+<tr><td>Combined plan at today's volume</td><td class="f">30,996 ÷ 45,000</td><td class="r">68.9%</td><td><span class="tag D">DERIVED</span></td></tr>
+<tr><td>Month capacity is first exceeded (no change)</td><td class="f">44,502 × 1.01² = 45,397 &gt; 45,000</td><td class="r">Month 2</td><td><span class="tag D">DERIVED</span></td></tr>
+</table>
+<div class="note"><b>Non-overlapping assumptions for the 73.1% scenario:</b> full eligible gold-card rollout; gold-card requests were already complete; halved pends occur outside that population; shares and handling times stay constant as volume grows; additional programme work is excluded. Neither option's exact on-time percentage can be calculated from the case tables. Appeal savings are not quantified because no appeal volume is given. $410M is annual payments at risk, not revenue loss.</div>
+</div></section>
+
+<section id="d2"><h2>D2 · North Star and supporting metrics</h2><div class="in">
+<table><tr><th>Metric</th><th>Baseline working</th><th>Baseline</th><th>Month-6 target</th><th>Target justification</th></tr>
+<tr><td>Standard decisions within 7 days (North Star)</td><td class="f">Table 1</td><td class="r">80%</td><td class="r">≥95%</td><td><span class="tag P">PROPOSED</span> Interim milestone toward the 100% legal requirement</td></tr>
+<tr><td>Missing-information pends</td><td class="f">27,180 ÷ 97,000</td><td class="r">28.0%</td><td class="r">≤14%</td><td><span class="tag P">PROPOSED</span> Half of baseline, the same as the 7,701-hour scenario</td></tr>
+<tr><td>Handling minutes per request</td><td class="f">44,502 × 60 ÷ 97,000 = 27.53</td><td class="r">27.5</td><td class="r">≤23</td><td><span class="tag D">DERIVED</span> 18 + 14% × 34 = 22.8 min at a 14% pend rate</td></tr>
+<tr><td>API submission share</td><td class="f">8,000 ÷ 97,000</td><td class="r">8.25%</td><td class="r">≥40%</td><td><span class="tag P">PROPOSED</span> About 8% + 12% (two groups, if API-capable) + about 20% from other top-50 groups (top 50 = 58%)</td></tr>
+<tr><td>Documentation denials ÷ all requests</td><td class="f">7,590 ÷ 97,000</td><td class="r">≈7.8%</td><td class="r">≤4%</td><td><span class="tag P">PROPOSED</span> Roughly half of baseline, in line with halved pends</td></tr>
+<tr><td>Appealed denials overturned</td><td class="f">Table 1</td><td class="r">62%</td><td class="r">≤50%</td><td><span class="tag P">PROPOSED</span> Lower overturns must not discourage appeals</td></tr>
+<tr><td>Urgent decisions within 72 hours</td><td class="f">not given</td><td class="r">—</td><td class="r">100%</td><td><span class="tag P">PROPOSED</span> Guardrail; every breach investigated</td></tr>
+<tr><td>Audited automated approvals appropriate</td><td class="f">not given</td><td class="r">—</td><td class="r">≥99%</td><td><span class="tag P">PROPOSED</span> Guardrail; reported separately for AI and gold cards</td></tr>
+</table>
+</div></section>
+
+<section id="d3"><h2>D3 · Rollout calendar</h2><div class="in">
+<table><tr><th>Phase</th><th>Weeks</th><th>Dates (kickoff Mon 19 Oct 2026)</th><th>Type</th></tr>
+<tr><td>Prepare</td><td>1–2</td><td>19 Oct – 1 Nov</td><td><span class="tag P">PROPOSED</span></td></tr>
+<tr><td>Pilot (gold cards, templates, basic Passport)</td><td>3–4</td><td>2 – 15 Nov</td><td><span class="tag P">PROPOSED</span></td></tr>
+<tr><td>Connect (API, shared views, chat); electronic acceptance live</td><td>5–8</td><td>16 Nov – 13 Dec</td><td><span class="tag P">PROPOSED</span></td></tr>
+<tr><td>Stabilise before the January 2027 mandate</td><td>9–10</td><td>14 – 27 Dec</td><td><span class="tag P">PROPOSED</span></td></tr>
+<tr><td>Expand selectively (shadow-mode AI first)</td><td>11–26</td><td>28 Dec 2026 – 18 Apr 2027</td><td><span class="tag P">PROPOSED</span></td></tr>
+</table>
+<div class="note">Week arithmetic: week n starts on 19 Oct + 7 × (n − 1) days. Week 10 ends 27 Dec, so the 10-week MVP finishes just before the 1 January 2027 electronic-acceptance requirement. Gold-card phasing in weeks 3–4 is subject to readiness; supported API switching takes 4–8 weeks (case).</div>
+</div></section>
+
+<section id="e"><h2>E · AI disclosure: the corrected calculation</h2><div class="in">
+<table><tr><th>Line</th><th>Working</th><th>Result</th></tr>
+<tr><td>AI's original claimed saving (overstated)</td><td class="f">27,180 × 52 ÷ 60</td><td class="r">23,556 h</td></tr>
+<tr><td>Necessary review that remains</td><td class="f">27,180 × 18 ÷ 60</td><td class="r">8,154 h</td></tr>
+<tr><td>Correct theoretical extra handling</td><td class="f">27,180 × (52 − 18) ÷ 60 = 23,556 − 8,154</td><td class="r">15,402 h</td></tr>
+<tr><td>Cross-check with the all-complete workload</td><td class="f">44,502 − 29,100</td><td class="r">15,402 h</td></tr>
+<tr><td>Size of the overstatement vs hiring</td><td class="f">8,154 h &gt; 40 × 150 = 6,000 h</td><td class="r">larger than 40 nurses</td></tr>
+</table>
+</div></section>
+
+<section id="ex"><h2>Executive summary · number index</h2><div class="in">
+<table><tr><th>Number</th><th>Where justified</th></tr>
+<tr><td>28% of requests · 53% of nurse time · 1.1% spare · 3.2 days</td><td><a href="#a1">A1</a></td></tr>
+<tr><td>46% documentation denials · fax 66% of incomplete</td><td><a href="#a2">A2</a>, <a href="#a1">A1</a></td></tr>
+<tr><td>≈5,805 h · ≈39 nurses · 7,701 h</td><td><a href="#b">B2</a></td></tr>
+<tr><td>$1.0–1.8M vs $3.8M/year, 12 weeks</td><td><a href="#d1">D1</a></td></tr>
+<tr><td>≥95% in 7 days by month 6 · 13 December</td><td><a href="#d2">D2</a>, <a href="#d3">D3</a></td></tr>
+</table>
+</div></section>
+
+<section id="as"><h2>Assumptions log</h2><div class="in">
+<table><tr><th>#</th><th>Assumption</th><th>Used in</th><th>Why reasonable / sensitivity</th></tr>
+<tr><td>1</td><td>Each incomplete request takes 52 minutes in total (includes follow-ups) and is counted once</td><td>A1, B, D1</td><td>Table 5 defines handling per incomplete request; repeated loops would make the bottleneck larger, not smaller</td></tr>
+<tr><td>2</td><td>September channel pend rates apply to all September volume</td><td>A1</td><td>Table 2 is the only completeness data given</td></tr>
+<tr><td>3</td><td>Gold-card reviews and audits take 18 minutes; gold-card requests are complete</td><td>A3, B2, D1</td><td>&gt;97% approval implies well-documented requests; if some pend, the savings are higher</td></tr>
+<tr><td>4</td><td>Halving pends is a scenario</td><td>B2, D1, D2</td><td>Shows scale only; to be measured in the pilot</td></tr>
+<tr><td>5</td><td>1% monthly growth with an unchanged request mix</td><td>D1</td><td>Planning assumption allowed by the case</td></tr>
+<tr><td>6</td><td>10–12 FTE at $45K fully loaded GCC cost</td><td>D1</td><td>Indicative GCC team cost; validate before committing</td></tr>
+<tr><td>7</td><td>Two vendor tools at the case's $200–500K each; $200K onboarding</td><td>D1</td><td>Tool range from the case; onboarding is an allowance</td></tr>
+<tr><td>8</td><td>The pilot's 64% approve rate transfers to imaging + PT volume</td><td>C</td><td>Shown as a conditional pool only, never as an automation target</td></tr>
+<tr><td>9</td><td>Prioritisation impact, confidence and effort scores</td><td>B2</td><td>Team judgments; they guide sequencing, not delivery commitments</td></tr>
+<tr><td>10</td><td>Kickoff on 19 Oct 2026</td><td>D3</td><td>The first Monday after submission</td></tr>
+<tr><td>11</td><td>The prototype simulator assumes a 5-minute nurse confirmation for AI-approved requests</td><td>Prototype only</td><td>Labelled on screen; not used on any slide</td></tr>
+<tr><td>12</td><td>Released capacity is not cash or jobs saved; $410M is payments at risk, not revenue</td><td>All</td><td>Avoids overstating financial benefit</td></tr>
+</table>
+</div></section>
+</main>
+<footer>Decide at the Door · CARE-BOT · Siddhartha Aryan (MBAHC25080), IIM Jammu · Appendix to the Prior Authorization submission · All figures derive from the case tables unless marked as an assumption or proposal.</footer>
+</body></html>
